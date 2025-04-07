@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+      - "8000:8000"
+    environment:
+      - OLLAMA_ENV=production
+    volumes:
+      - ollama_data:/data
+
+  web:
+    image: your_flask_app_image:latest
+    container_name: flask_web
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+      - DATABASE_URL=postgresql://user:password@db:5432/yourdatabase
+    volumes:
+      - ./app:/app
+    depends_on:
+      - db
+
+  db:
+    image: postgres:alpine
+    container_name: postgres_db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=yourdatabase
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  ollama_data:
+  postgres_data:
