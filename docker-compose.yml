@@ -12,9 +12,9 @@ services:
       - ollama_data:/data
     restart: always
 
-  oracle:
-    image: oraclelinux:9.5
-    container_name: oracle_linux
+  ubuntu:
+    image: ubuntu:jammy
+    container_name: ubuntu_jammy
     restart: always
 
   db:
