@@ -1,13 +1,13 @@
-# Ollama, Apache Tika, PostgreSQL, and Oracle Linux Docker Compose
+# Ollama, Apache Tika, PostgreSQL, and Ubuntu Jammy Docker Compose
 
-This repository contains a Docker Compose setup for running an Ollama server, an Apache Tika server, a PostgreSQL database server, and an Oracle Linux server.
+This repository contains a Docker Compose setup for running an Ollama server, an Apache Tika server, a PostgreSQL database server, and an Ubuntu Jammy server.
 
 ## Services
 
 - **Ollama**: A service running the Ollama application.
 - **Apache Tika**: A service running the Apache Tika server for document text extraction.
 - **PostgreSQL**: A service running the PostgreSQL database server.
-- **Oracle Linux**: A service running Oracle Linux 9.5.
+- **Ubuntu Jammy**: A service running Ubuntu Jammy.
 
 ## Prerequisites
 
@@ -33,7 +33,7 @@ To get the services up and running, follow these steps:
     - Ollama: [http://localhost:8000](http://localhost:8000)
     - Apache Tika: [http://localhost:9998](http://localhost:9998)
     - PostgreSQL: Accessible on port 5432
-    - Oracle Linux: Running as a service
+    - Ubuntu Jammy: Running as a service
 
 ## Docker Compose File
 
@@ -54,9 +54,9 @@ services:
       - ollama_data:/data
     restart: always
 
-  oracle:
-    image: oraclelinux:9.5
-    container_name: oracle_linux
+  ubuntu:
+    image: ubuntu:jammy
+    container_name: ubuntu_jammy
     restart: always
 
   db:
