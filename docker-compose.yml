@@ -10,22 +10,15 @@ services:
       - OLLAMA_ENV=production
     volumes:
       - ollama_data:/data
+    restart: always
 
-  web:
-    image: your_flask_app_image:latest
-    container_name: flask_web
-    ports:
-      - "5000:5000"
-    environment:
-      - FLASK_ENV=production
-      - DATABASE_URL=postgresql://user:password@db:5432/yourdatabase
-    volumes:
-      - ./app:/app
-    depends_on:
-      - db
+  oracle:
+    image: oraclelinux:9.5
+    container_name: oracle_linux
+    restart: always
 
   db:
-    image: postgres:alpine
+    image: postgres:latest
     container_name: postgres_db
     ports:
       - "5432:5432"
@@ -35,6 +28,14 @@ services:
       - POSTGRES_DB=yourdatabase
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+  tika:
+    image: apache/tika:latest
+    container_name: tika
+    ports:
+      - "9998:9998"
+    restart: always
 
 volumes:
   ollama_data:
